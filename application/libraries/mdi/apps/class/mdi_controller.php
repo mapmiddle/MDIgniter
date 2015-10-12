@@ -102,7 +102,7 @@ class MDI_Controller extends CI_Controller {
                     }
 
                 } catch(MDI_ControllerAnnotation_Exception $e) {
-                    throw $e;
+                    return FALSE;
                 }
             }
         }
