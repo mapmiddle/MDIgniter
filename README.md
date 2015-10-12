@@ -18,7 +18,7 @@ Third party library of CodeIgniter
 - gd2.dll 
 
 # Installation
-1 . Installation **CodeIgniter 2.X**
+1 . Installation **CodeIgniter 2.X** [download](http://www.codeigniter.com/download)
 
 2 . Copy the **MDI files** into your **CodeIgniter root**.
 
