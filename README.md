@@ -1,11 +1,11 @@
 # MDIgniter
-The CodeIgniter third party library
+Third party library of CodeIgniter
 
 # Features
 - Additional features of [CodeIgniter 2.X](http://www.codeigniter.com/)
 - Additional features of [Datamapper ORM](http://datamapper.wanwizard.eu/) 
 - Administrator panel support
-- Auto database build
+- Auto database schema build
 - Controller annotation with a Django style
 - Mobile response(push message...and more)
 
@@ -18,6 +18,48 @@ The CodeIgniter third party library
 - gd2.dll 
 
 # Installation
+1 . Installation **CodeIgniter 2.X**
+
+2 . Copy the **MDI files** into your **CodeIgniter root**.
+
+3 . **Create your database** and modify **application/config/database.php** in CodeIgniter
+
+4 . **application/config/autoload.php** change the file as follows:
+```
+$autoload['libraries'] = array('database', 'session', 'mdi');
+$autoload['helper'] = array('url', 'file');
+```
+5 . **application/config/routes.php** change the file as follows:
+```
+$route['admin'] = "admin";
+$route['admin/(:any)'] = "admin/$1";
+```
+6 . **application/config/config.php** change the file :
+```
+$config['encryption_key'] = "YOUR KEY";
+```
+7 . Finally, open your **CodeIgniter /index.php** file and add the MDI bootstrap, directly **before the Codeigniter bootstrap**.
+
+```
+...
+
+/* --------------------------------------------------------------------
+ * LOAD THE MDI BOOTSTRAP FILE
+ * --------------------------------------------------------------------
+ */
+require_once APPPATH . 'third_party/mdi/bootstrap.php';
+
+/*
+ * --------------------------------------------------------------------
+ * LOAD THE BOOTSTRAP FILE
+ * --------------------------------------------------------------------
+ *
+ * And away we go...
+ *
+ */
+require_once BASEPATH.'core/CodeIgniter.php';
+```
+
 # Reference
 # Documentation
 # Example
