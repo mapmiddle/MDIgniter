@@ -1,0 +1,31 @@
+
+.cursor-hand {
+    cursor: pointer;
+}
+
+.popup-search-model {
+    margin: 0!important;
+    padding: 0!important;
+    width: 100%!important;
+}
+
+.popup-search-model .table td {
+    vertical-align: middle!important;
+}
+
+.popup-search-model .form-group {
+    margin: 0!important;
+}
+
+.popup-search-model .list-group-item.active {
+    border-radius: 0!important;
+    background-color: #DEDEDE!important;
+    border-color: #DEDEDE!important;
+    color: #333!important;
+}
+
+.popup-search-model .list-group-item.active:hover {
+    background-color: #DEDEDE!important;
+    border-color: #DEDEDE!important;
+    color: #333!important;
+}

@@ -1,0 +1,5 @@
+@charset "UTF-8";
+
+.mdi-autocomplete-container .tokenfield.form-control .token.readonly {
+    background-color: #FFC2C2;
+}

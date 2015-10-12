@@ -1,0 +1,27 @@
+
+html, body {
+    height: 100%;
+}
+
+.login-container {
+    display: table;
+    height: 100%;
+}
+
+.login-container-inner {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.login {
+    margin-bottom: 150px !important;
+    width: 650px;
+}
+
+.login input {
+    width: 100%;
+}
+
+.login .btn {
+    margin-top: 20px;
+}

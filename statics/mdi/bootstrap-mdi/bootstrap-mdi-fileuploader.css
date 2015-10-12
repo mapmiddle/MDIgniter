@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+.mdi-fileuploader-container {
+    margin-bottom: 15px;
+}
+
+.mdi-fileuploader-container > .mdi-fileuploader-prepopulated {
+    display: none;
+}
+
+.mdi-fileuploader-container > .mdi-fileuploader-button {
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+    width: 190px;
+}
+
+.mdi-fileuploader-container > .mdi-fileuploader-button input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    font-size: 200px;
+    direction: ltr;
+    cursor: pointer;
+}
+
+.mdi-fileuploader-container > .mdi-fileuploader-preview {
+    border: 1px dashed #aaa;
+    border-radius: 4px;
+    min-height: 215px;
+}
+
+.mdi-fileuploader-container.single > .mdi-fileuploader-preview {
+    width: 190px;
+}
+
+.mdi-fileuploader-container > .mdi-fileuploader-preview .item {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+    padding: 30px 8px 8px 8px;
+    border: 1px solid #ddd;
+    box-shadow: 1px 1px 5px 0 #a2958a;
+}
+
+.mdi-fileuploader-container > .mdi-fileuploader-preview .item .canvas {
+    display: table-cell;
+    width: 160px;
+    height: 160px;
+    max-width: 160px;
+    max-height: 160px;
+    text-align: center;
+    vertical-align: middle;
+    background: #ddd
+}
+
+.mdi-fileuploader-container > .mdi-fileuploader-preview .item .canvas img {
+
+}
+
+.mdi-fileuploader-container > .mdi-fileuploader-preview .item .remove {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #ddd;
+}
+
+.mdi-fileuploader-container > .mdi-fileuploader-preview .item .remove:hover {
+    color: #333;
+}
+
+/* Fixes for IE < 8 */
+@media screen\9 {
+    .mdi-fileuploader-container > .mdi-fileuploader-button input {
+        filter: alpha(opacity=0);
+        font-size: 100%;
+        height: 100%;
+    }
+}
