@@ -78,8 +78,11 @@ require_once BASEPATH.'core/CodeIgniter.php';
 - [JQuery File Upload](https://blueimp.github.io/jQuery-File-Upload/)
 - [Bootstrap 3.3.1](http://getbootstrap.com/)
 
-# Documentation
 # Example
+- Full Example(includes CodeIgniter 2.2.4) [download](https://www.dropbox.com/s/frbgd74x1pdiaw9/mdigniter_example.zip)
+
+# Documentation
+
 # License
 
 ###[CodeIgniter](http://www.codeigniter.com/userguide2/license.html)
