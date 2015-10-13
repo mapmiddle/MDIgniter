@@ -1104,16 +1104,18 @@ class MDI_Model extends DataMapper {
             return NULL;
         }
 
-        if (!$default || is_mdinull($default)) {
-            $default = array();
-        }
-
         if (!array_key_exists('model', $attribute)) {
             mdi::error(get_class($this).'::admin_widget_has_many - the model that does not exist in attribute');///
         }
 
-        if (!is_numeric_array($default)) {
-            mdi::error(get_class($this).'::admin_widget_has_many - the default value are allow only numeric array');///
+        if (!$default || empty($default) || is_mdinull($default)) {
+            $default = array();
+        } else if (is_array($default)) {
+            $default = array_filter($default);
+
+            if (!is_numeric_array($default)) {
+                mdi::error(get_class($this).'::admin_widget_has_many - the default value are allow only numeric array');///
+            }
         }
 
         $name = $attribute['name'];
@@ -1192,7 +1194,7 @@ class MDI_Model extends DataMapper {
     public function __call($method, $arguments) {
         static $watched_methods = array(
             '_choices_display', '_display',
-            '_has_rule', '_has_many_add', '_has_many_del',
+            '_has_rule', '_has_admin', '_has_many_add', '_has_many_del',
             '_as_admin_widget', '_choices_array',
             '_is_related_changed',
             '_type_get', '_label_get', '_admin_get', '_id_get',
@@ -1309,14 +1311,29 @@ class MDI_Model extends DataMapper {
         return MDI_Model::$mdicommon[$common_key]['_ALL_FIELDS'][$field]['admin'];
     }
 
-    private function _has_rule($field, $arguments) {
+    private function _rule_get($field, $arguments) {
         if (!$this->is_exists_field($field)) {
-            mdi::error(get_class($this).'::'.$field.'_has_rule - '.$field.' field does not exist');///
+            mdi::error(get_class($this).'::'.$field.'_label - '.$field.' field does not exist');///
         }
 
         $common_key = $this->get_common_key();
-        $rules = MDI_Model::$mdicommon[$common_key]['_ALL_FIELDS'][$field]['rules'];
+        return MDI_Model::$mdicommon[$common_key]['_ALL_FIELDS'][$field]['rules'];
+    }
+
+    private function _has_rule($field, $arguments) {
+        $rules = $this->_rule_get($field, $arguments);
+
         if (array_key_exists($arguments[0], $rules)) {
+            return TRUE;
+        }
+
+        return FALSE;
+    }
+
+    private function _has_admin($field, $arguments) {
+        $admin = $this->_admin_get($field, $arguments);
+
+        if (array_key_exists($arguments[0], $admin)) {
             return TRUE;
         }
 

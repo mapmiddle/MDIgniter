@@ -14,9 +14,11 @@
             </th>
             <?php
                 foreach ($this->parse_model_table['_OBJECT']->default_fields as $field => $attribute){
-                    ?><th><?php
-                        echo $this->parse_model_table['_OBJECT']->{$field.'_label_get'}();
-                    ?></th><?php
+                    if (!$this->parse_model_table['_OBJECT']->{$field.'_has_admin'}('hide')) {
+                        ?><th><?php
+                            echo $this->parse_model_table['_OBJECT']->{$field.'_label_get'}();
+                        ?></th><?php
+                    }
                 }
             ?>
         </tr>
@@ -30,9 +32,11 @@
                         </td>
                     <?php
                         foreach ($row->default_fields as $field => $attribute){
-                            ?><td><?php
-                                echo $row->{$field.'_display'}();
-                            ?></td><?php
+                            if (!$row->{$field.'_has_admin'}('hide')) {
+                                ?><td><?php
+                                echo $row->{$field . '_display'}();
+                                ?></td><?php
+                            }
                         }
                     ?></tr><?php
                 }
