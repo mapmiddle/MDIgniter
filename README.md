@@ -82,6 +82,171 @@ require_once BASEPATH.'core/CodeIgniter.php';
 - Full Example(includes CodeIgniter 2.2.4) [download](https://www.dropbox.com/s/frbgd74x1pdiaw9/mdigniter_example.zip)
 
 # Documentation
+## Usage of ORM
+MDI uses Datamapper Libraries.
+Its default usage as follows :
+
+***User Model***
+```
+class Model_User extends MDI_User {
+    var $label = 'User';
+    var $table = "users";
+    var $abstract = FALSE;
+
+    var $validation = array(
+        'name' => array(
+            'label' => 'Name',
+            'rules' => array('varchar' => 32, 'required', 'trim', 'index'),
+        ),
+
+        'phone' => array(
+            'label' => 'Phone',
+            'rules' => array('varchar' => 32, 'required', 'trim', 'unique'),
+        ),
+
+        'introduce' => array(
+            'label' => 'Introduce',
+            'rules' => array('text'),
+        ),
+
+        'enable' => array(
+            'label' => 'Enable',
+            'rules' => array('boolean', 'default' => true),
+        ),
+    );
+
+    var $has_one = array(
+        'book' => array(
+            'label' => 'Book',
+            'class' => 'model_book',
+            'other_field' => 'author'
+        ),
+    );
+
+    var $has_many = array(
+        'rental_list' => array(
+            'label' => 'Rental list',
+            'class' => 'model_book',
+            'other_field' => 'borrowed_user_list',
+        ),
+    );
+
+}
+```
+
+***Book Model***
+```
+class Model_Book extends MDI_Model {
+    var $label = 'Book';
+    var $table = "books";
+    var $abstract = FALSE;
+
+    var $validation = array(
+        'name' => array(
+            'label' => 'Name',
+            'rules' => array('varchar' => 32, 'required', 'min_length' => 3, 'max_length' => 20),
+        ),
+
+        'book_code' => array(
+            'label' => 'Book code',
+            'rules' => array('varchar' => 32, 'required', 'build_code'),
+        ),
+
+        'read_only_value' => array(
+            'label' => 'Read only value',
+            'rules' => array('int'),
+            'admin' => array('read_only'),
+        ),
+
+        'hide_value' => array(
+            'label' => 'Hide value',
+            'rules' => array('int'),
+            'admin' => array('hide'),
+        ),
+    );
+
+    var $has_one = array(
+        'author' => array(
+            'label' => 'author',
+            'class' => 'model_user',
+            'other_field' => 'book'
+        ),
+    );
+
+    var $has_many = array(
+        'borrowed_user_list' => array(
+            'label' => 'Borrowed users',
+            'class' => 'model_user',
+            'other_field' => 'rental_list',
+        ),
+    );
+
+    // Custom Validation
+    function _build_code($field) {
+        if (!empty($this->{$field})) {
+            $this->{$field} = sha1(md5(uniqid($this->{$field}, true)));
+        }
+    }
+}
+```
+
+***Admin Controller***
+```
+class Admin extends MDI_Admin_Controller {
+    var $dashboard = array(
+        'group 1' => array(
+            'Model_User',
+            'Model_Book',
+        ),
+
+...
+...
+```
+
+Now, when you login to administrator panel or you use its model class then ***automatically will generate the following tables*** :
+```
+users
+books
+books_users
+```
+> 'books_user' table is m2m junction table
+
+### Usage of Model
+
+```
+// Example for create admin
+$user = new Model_User();
+$user->where('email', mdi::config('admin_default_email'))->get();
+
+if ($user->exists()) {
+    return;
+}
+
+$credential = new MDI_Credential_Native();
+$credential->email = mdi::config('admin_default_email');
+$credential->password = mdi::config('admin_default_password');
+$credential->_need_encrpyt = TRUE;
+$credential->save();
+
+$user->email = mdi::config('admin_default_email');
+$user->grade = mdi::config('admin_default_grade');
+$user->name = 'Admin';
+$user->phone = '0000-0000';
+$user->save($credential, 'credential_native');
+```
+In the above example, the `MDI_Credential_Native` is a MDI basic model that contains account information. 
+its has One to One(O2O) relationships with `MDI_User`.
+
+***Other details, Please refer to the documents [Datamapper ORM](http://datamapper.wanwizard.eu/pages/gettingstarted.html)***
+
+### The difference between the Datamapper ###
+In Preparing
+
+## Administrator Panel
+In Preparing
+
+## Controller Annotation
+In Preparing
 
 # License
 
