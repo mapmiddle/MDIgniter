@@ -192,6 +192,10 @@ class Model_Book extends MDI_Model {
 
 ***Admin Controller***
 ```
+/**
+ * @require_admin
+ * @utf_8
+ */
 class Admin extends MDI_Admin_Controller {
     var $dashboard = array(
         'group 1' => array(
