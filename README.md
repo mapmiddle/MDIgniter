@@ -79,7 +79,7 @@ require_once BASEPATH.'core/CodeIgniter.php';
 - [Bootstrap 3.3.1](http://getbootstrap.com/)
 
 # Example
-- Full Example(includes CodeIgniter 2.2.4) [download](https://www.dropbox.com/s/frbgd74x1pdiaw9/mdigniter_example.zip)
+- Full Example(includes CodeIgniter 2.2.4) [download](https://www.dropbox.com/s/qk9rr5na6eisyuj/mdigniter_example.zip?dl=0)
 
 # Documentation
 ## Usage of ORM
