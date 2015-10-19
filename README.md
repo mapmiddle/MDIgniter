@@ -63,7 +63,7 @@ require_once BASEPATH.'core/CodeIgniter.php';
 /* End of file index.php */
 /* Location: ./index.php */
 ```
-8 . Now, when you browse to **/index.php/admin** will see the following screen
+8 . Now, when you browse to **/index.php/admin** you will see the following screen
 <img src="https://cloud.githubusercontent.com/assets/7834058/10424112/4cf79544-7107-11e5-826a-b40961e6ce99.png" height="500">
 - By default, you can login using email(admin@admin.com) and password(1234)
 
